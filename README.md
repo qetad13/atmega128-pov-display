@@ -176,6 +176,7 @@ LED 보드는 전원 투입 시 R → G → B를 0.3초씩 켜서 LED 상태를 
 `C (CodeVisionAVR)` `AVR ATmega128` · `74HC595` `L298N` · `KiCad 9` · `3D 모델링`
 
 ## 라이선스 / 출처
+- [MIT License](LICENSE)
 - 이 저장소의 코드, 회로 및 기구 설계는 모두 직접 작성했으며 외부 코드는 포함하지 않았습니다.
 - `mega128.h`, `delay.h`: CodeVisionAVR 컴파일러 기본 헤더 (저장소에 미포함)
 - PCB 회로도/풋프린트: KiCad 기본 라이브러리 심볼·풋프린트 사용 (CC-BY-SA 4.0, 설계물에 대한 예외 조항 적용)
