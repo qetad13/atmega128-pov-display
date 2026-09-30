@@ -17,28 +17,10 @@
 
 ## 시스템 구조
 
-<p align="center"><img src="docs/images/block_diagram.png" width="55%"></p>
+<p align="center"><img src="docs/images/block_diagram.svg" width="90%"></p>
 
-```mermaid
-flowchart LR
-    subgraph PWR["전원"]
-        AD[12V 어댑터]
-    end
-    subgraph MB["모터 보드 (ATmega128 #2)"]
-        SW2["스위치 ×3<br/>INT0~2"] --> M128B[ATmega128]
-        M128B -->|"OC0 (PB4) PWM"| L298[L298N]
-        M128B -->|"PA0/PA1 방향"| L298
-    end
-    subgraph ROT["회전부 (자체 PCB, ATmega128 #1)"]
-        SW1["스위치 ×4<br/>INT0~3"] --> M128A[ATmega128]
-        M128A -->|"PA0 SER / PA1 SRCLK / PA2 RCLK"| SR["74HC595 ×6<br/>(48비트 체인)"]
-        SR --> LED["RGB LED ×16"]
-    end
-    AD --> L298
-    L298 -->|12V + PWM| MOT[DC 모터]
-    L298 -->|5V| M128B
-    MOT -. 회전 .-> ROT
-```
+- **고정부**: 12V 어댑터 → L298N이 모터를 구동하고, L298N의 5V 출력으로 모터 보드와 회전부에 전원 공급
+- **회전부**: 전원은 **슬립링**을 통해 회전판 위 LED 보드로 전달되며, MCU가 74HC595 체인으로 RGB LED 16개를 구동
 
 ### 동작 원리
 
@@ -51,7 +33,7 @@ flowchart LR
 
 ### 제어 흐름
 
-<p align="center"><img src="docs/images/flowchart.png" width="70%"></p>
+<p align="center"><img src="docs/images/flowchart.svg" width="90%"></p>
 
 ### 핀 배치
 
@@ -121,7 +103,7 @@ atmega128-pov-display/
 
 - 회전판에 PCB와 LED를 고정하고, 모터 축에 연결해 회전
 - 지지대(위/아래)와 받침대로 모터와 회전부를 고정
-- 회전부 전원은 슬립링을 통해 공급
+- 회전부 전원은 슬립링을 통해 공급 (회전하는 LED 보드에 VCC · GND 전달)
 
 ---
 

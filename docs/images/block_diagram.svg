@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 570" width="960" height="570" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrPow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrMech" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/>
+    </marker>
+    <style>
+      .t  { font-size: 15px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .s  { font-size: 12px; fill: #4b5563; text-anchor: middle; }
+      .lb { font-size: 12px; fill: #374151; }
+      .lbp{ font-size: 12px; fill: #dc2626; font-weight: 700; }
+      .fr { font-size: 14px; font-weight: 700; fill: #374151; }
+      .box { fill: #ffffff; stroke: #6b7280; stroke-width: 1.5; }
+      .mcu { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+      .io  { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; }
+      .pow { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; }
+      .slip{ fill: #ffedd5; stroke: #ea580c; stroke-width: 2; }
+      .led { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; }
+      .w   { stroke: #374151; stroke-width: 1.8; fill: none; }
+      .wp  { stroke: #dc2626; stroke-width: 1.8; fill: none; }
+      .wm  { stroke: #6b7280; stroke-width: 1.8; fill: none; stroke-dasharray: 7 5; }
+    </style>
+  </defs>
+
+  <rect width="960" height="570" fill="#ffffff"/>
+
+  <!-- 프레임 -->
+  <rect x="20" y="40" width="460" height="440" rx="12" fill="#f9fafb" stroke="#9ca3af" stroke-dasharray="6 4"/>
+  <text x="36" y="30" class="fr">고정부</text>
+  <rect x="600" y="40" width="340" height="440" rx="12" fill="#fffbeb" stroke="#d97706" stroke-dasharray="6 4"/>
+  <text x="616" y="30" class="fr">회전부 (회전판 위 자체 PCB)</text>
+
+  <!-- 고정부 블록 -->
+  <rect x="40" y="70" width="170" height="50" rx="6" class="pow"/>
+  <text x="125" y="100" class="t">12V 어댑터</text>
+
+  <rect x="40" y="180" width="170" height="64" rx="6" class="box"/>
+  <text x="125" y="207" class="t">L298N</text>
+  <text x="125" y="226" class="s">모터 드라이버</text>
+
+  <rect x="40" y="340" width="170" height="56" rx="6" class="box"/>
+  <text x="125" y="373" class="t">DC 모터</text>
+
+  <rect x="290" y="180" width="170" height="64" rx="6" class="mcu"/>
+  <text x="375" y="207" class="t">ATmega128 #2</text>
+  <text x="375" y="226" class="s">모터 보드</text>
+
+  <rect x="290" y="340" width="170" height="56" rx="6" class="io"/>
+  <text x="375" y="364" class="t">스위치 ×3</text>
+  <text x="375" y="383" class="s">속도 + / − · 일시정지</text>
+
+  <!-- 고정부 연결 -->
+  <path d="M125,120 V178" class="wp" marker-end="url(#arrPow)"/>
+  <text x="133" y="154" class="lbp">12V</text>
+
+  <path d="M125,244 V338" class="w" marker-end="url(#arr)"/>
+  <text x="133" y="290" class="lb">12V · PWM 구동</text>
+
+  <path d="M290,198 H212" class="w" marker-end="url(#arr)"/>
+  <text x="251" y="189" class="lb" text-anchor="middle">PWM·방향</text>
+
+  <path d="M210,228 H288" class="wp" marker-end="url(#arrPow)"/>
+  <circle cx="250" cy="228" r="3.5" fill="#dc2626"/>
+  <text x="258" y="244" class="lbp">5V</text>
+
+  <path d="M375,340 V246" class="w" marker-end="url(#arr)"/>
+  <text x="383" y="300" class="lb">INT0~2 (PD0~2)</text>
+
+  <!-- 5V → 슬립링 -->
+  <path d="M250,228 V430 H540 V246" class="wp" marker-end="url(#arrPow)"/>
+
+  <!-- 슬립링 -->
+  <rect x="490" y="180" width="100" height="64" rx="6" class="slip"/>
+  <text x="540" y="207" class="t">슬립링</text>
+  <text x="540" y="226" class="s">VCC · GND</text>
+
+  <!-- 회전부 블록 -->
+  <rect x="630" y="70" width="190" height="50" rx="6" class="io"/>
+  <text x="725" y="91" class="t">스위치 ×4</text>
+  <text x="725" y="109" class="s">색상 · 밝기 · 패턴 1 · 패턴 2</text>
+
+  <rect x="630" y="180" width="190" height="64" rx="6" class="mcu"/>
+  <text x="725" y="207" class="t">ATmega128 #1</text>
+  <text x="725" y="226" class="s">LED 보드</text>
+
+  <rect x="630" y="300" width="190" height="60" rx="6" class="box"/>
+  <text x="725" y="325" class="t">74HC595 ×6</text>
+  <text x="725" y="344" class="s">48비트 직렬 체인 (B → G → R)</text>
+
+  <rect x="630" y="405" width="190" height="56" rx="6" class="led"/>
+  <text x="725" y="429" class="t">RGB LED ×16</text>
+  <text x="725" y="448" class="s">16행 × R·G·B = 48채널</text>
+
+  <!-- 회전부 연결 -->
+  <path d="M590,212 H628" class="wp" marker-end="url(#arrPow)"/>
+
+  <path d="M725,120 V178" class="w" marker-end="url(#arr)"/>
+  <text x="733" y="154" class="lb">INT0~3 (PD0~3)</text>
+
+  <path d="M725,244 V298" class="w" marker-end="url(#arr)"/>
+  <text x="733" y="275" class="lb">SER · SRCLK · RCLK (PA0~2)</text>
+
+  <path d="M725,360 V403" class="w" marker-end="url(#arr)"/>
+  <text x="733" y="386" class="lb">Active-Low 출력</text>
+
+  <!-- 기계적 회전 -->
+  <path d="M125,396 V530 H880 V482" class="wm" marker-end="url(#arrMech)"/>
+  <text x="500" y="552" class="lb" text-anchor="middle" fill="#6b7280">모터 축이 회전판을 돌림 → LED 열 데이터를 빠르게 바꿔 잔상으로 이미지 표시</text>
+
+  <!-- 범례 -->
+  <g transform="translate(862,70)">
+    <line x1="0" y1="0" x2="22" y2="0" class="wp"/><text x="0" y="16" class="lb" font-size="11">전원</text>
+    <line x1="0" y1="34" x2="22" y2="34" class="w"/><text x="0" y="50" class="lb" font-size="11">신호</text>
+    <line x1="0" y1="68" x2="22" y2="68" class="wm"/><text x="0" y="84" class="lb" font-size="11">기계</text>
+  </g>
+</svg>

@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940" width="960" height="940" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#374151"/>
+    </marker>
+    <style>
+      .t  { font-size: 14px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .s  { font-size: 12px; fill: #4b5563; text-anchor: middle; }
+      .l  { font-size: 12px; fill: #374151; }
+      .yn { font-size: 12px; font-weight: 700; fill: #2563eb; }
+      .h  { font-size: 16px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .sec{ font-size: 13px; font-weight: 700; fill: #374151; }
+      .term { fill: #e5e7eb; stroke: #4b5563; stroke-width: 1.5; }
+      .proc { fill: #ffffff; stroke: #4b5563; stroke-width: 1.5; }
+      .init { fill: #f3f4f6; stroke: #6b7280; stroke-width: 1.5; }
+      .dec  { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
+      .out  { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; }
+      .isr  { fill: #ede9fe; stroke: #7c3aed; stroke-width: 1.5; }
+      .sub  { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; stroke-dasharray: 5 3; }
+      .w    { stroke: #374151; stroke-width: 1.6; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="960" height="940" fill="#ffffff"/>
+
+  <!-- 레인 헤더 -->
+  <rect x="15" y="10" width="455" height="38" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="242" y="35" class="h">LED 보드 (ATmega128 #1)</text>
+  <rect x="490" y="10" width="455" height="38" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="717" y="35" class="h">모터 보드 (ATmega128 #2)</text>
+  <line x1="480" y1="10" x2="480" y2="925" stroke="#d1d5db" stroke-dasharray="6 4"/>
+
+  <!-- ================= LED 보드 ================= -->
+  <g>
+    <rect x="140" y="70" width="120" height="36" rx="18" class="term"/>
+    <text x="200" y="93" class="t">시작</text>
+    <path d="M200,106 V124" class="w" marker-end="url(#arr)"/>
+
+    <rect x="90" y="126" width="220" height="48" rx="4" class="init"/>
+    <text x="200" y="146" class="t">포트 초기화</text>
+    <text x="200" y="164" class="s">PA0~2 출력 · PD0~3 입력(풀업)</text>
+    <path d="M200,174 V192" class="w" marker-end="url(#arr)"/>
+
+    <rect x="90" y="194" width="220" height="48" rx="4" class="init"/>
+    <text x="200" y="214" class="t">외부 인터럽트 설정</text>
+    <text x="200" y="232" class="s">INT0~3 하강 에지 · sei</text>
+    <path d="M200,242 V260" class="w" marker-end="url(#arr)"/>
+
+    <rect x="90" y="262" width="220" height="48" rx="4" class="init"/>
+    <text x="200" y="282" class="t">RGB 테스트 출력</text>
+    <text x="200" y="300" class="s">빨 → 초 → 파 각 0.3초</text>
+    <path d="M200,310 V340" class="w" marker-end="url(#arr)"/>
+
+    <!-- 루프 시작 -->
+    <rect x="90" y="342" width="220" height="48" rx="4" class="proc"/>
+    <text x="200" y="362" class="t">현재 열 출력</text>
+    <text x="200" y="380" class="s">bright()</text>
+    <path d="M200,390 V412" class="w" marker-end="url(#arr)"/>
+
+    <!-- 판단 1 -->
+    <polygon points="200,414 290,450 200,486 110,450" class="dec"/>
+    <text x="200" y="455" class="t" font-size="13">isa_flag == 1 ?</text>
+    <path d="M290,450 H338" class="w" marker-end="url(#arr)"/>
+    <text x="300" y="442" class="yn">예</text>
+    <rect x="340" y="424" width="120" height="52" rx="4" class="out"/>
+    <text x="400" y="446" class="t">ISA 글자</text>
+    <text x="400" y="465" class="s">24열 순차 출력</text>
+    <path d="M400,476 V512 H202" class="w" marker-end="url(#arr)"/>
+    <path d="M200,486 V530" class="w" marker-end="url(#arr)"/>
+    <text x="208" y="503" class="yn">아니오</text>
+
+    <!-- 판단 2 -->
+    <polygon points="200,532 290,568 200,604 110,568" class="dec"/>
+    <text x="200" y="573" class="t" font-size="13">heart_flag == 1 ?</text>
+    <path d="M290,568 H338" class="w" marker-end="url(#arr)"/>
+    <text x="300" y="560" class="yn">예</text>
+    <rect x="340" y="542" width="120" height="52" rx="4" class="out"/>
+    <text x="400" y="564" class="t">하트</text>
+    <text x="400" y="583" class="s">12열 순차 출력</text>
+    <path d="M400,594 V630 H202" class="w" marker-end="url(#arr)"/>
+    <path d="M200,604 V650 H55 V326 H198" class="w" marker-end="url(#arr)"/>
+    <text x="208" y="621" class="yn">아니오</text>
+    <text x="35" y="484" class="l" text-anchor="middle">무한</text><text x="35" y="500" class="l" text-anchor="middle">반복</text>
+
+    <!-- bright() 서브루틴 -->
+    <rect x="30" y="672" width="430" height="66" rx="6" class="sub"/>
+    <text x="45" y="694" class="sec">bright()  한 열 출력 (7 ms 주기 소프트웨어 PWM)</text>
+    <text x="45" y="713" class="l">① 색상에 맞게 16비트 열 패턴을 R·G·B에 배치 → 48비트 시프트 후 래치</text>
+    <text x="45" y="730" class="l">② uptime ms 점등 → 전체 소등 → (7 − uptime) ms 대기</text>
+
+    <!-- ISR -->
+    <text x="30" y="768" class="sec">인터럽트 (버튼 입력 시 실행)</text>
+    <rect x="30" y="778" width="210" height="56" rx="6" class="isr"/>
+    <text x="135" y="800" class="t">INT0 (PD0) 색상 전환</text>
+    <text x="135" y="820" class="s">빨→초→파→노→마젠타→청록</text>
+    <rect x="250" y="778" width="210" height="56" rx="6" class="isr"/>
+    <text x="355" y="800" class="t">INT1 (PD1) 밝기 변경</text>
+    <text x="355" y="820" class="s">uptime 1 ↔ 6 단계 왕복</text>
+    <rect x="30" y="842" width="210" height="56" rx="6" class="isr"/>
+    <text x="135" y="864" class="t">INT2 (PD2) 패턴 1</text>
+    <text x="135" y="884" class="s">isa_flag = 1, heart_flag = 0</text>
+    <rect x="250" y="842" width="210" height="56" rx="6" class="isr"/>
+    <text x="355" y="864" class="t">INT3 (PD3) 패턴 2</text>
+    <text x="355" y="884" class="s">heart_flag = 1, isa_flag = 0</text>
+    <text x="30" y="918" class="l" fill="#6b7280">※ 플래그는 메인 루프의 판단 블록에서 확인</text>
+  </g>
+
+  <!-- ================= 모터 보드 ================= -->
+  <g>
+    <rect x="655" y="70" width="120" height="36" rx="18" class="term"/>
+    <text x="715" y="93" class="t">시작</text>
+    <path d="M715,106 V124" class="w" marker-end="url(#arr)"/>
+
+    <rect x="605" y="126" width="220" height="48" rx="4" class="init"/>
+    <text x="715" y="146" class="t">Timer0 Fast PWM 설정</text>
+    <text x="715" y="164" class="s">OC0(PB4) 비반전 · clk/32 · OCR0 = 0</text>
+    <path d="M715,174 V192" class="w" marker-end="url(#arr)"/>
+
+    <rect x="605" y="194" width="220" height="48" rx="4" class="init"/>
+    <text x="715" y="214" class="t">외부 인터럽트 설정</text>
+    <text x="715" y="232" class="s">PD0~2 풀업 · INT0~2 하강 에지</text>
+    <path d="M715,242 V260" class="w" marker-end="url(#arr)"/>
+
+    <rect x="605" y="262" width="220" height="48" rx="4" class="init"/>
+    <text x="715" y="282" class="t">회전 방향 고정 · sei</text>
+    <text x="715" y="300" class="s">PA0 = 1, PA1 = 0 (L298N IN1/IN2)</text>
+    <path d="M715,310 V328" class="w" marker-end="url(#arr)"/>
+
+    <rect x="605" y="330" width="220" height="48" rx="4" class="init"/>
+    <text x="715" y="350" class="t">정지 상태로 대기</text>
+    <text x="715" y="368" class="s">speed = 0 · stop_flag = 1</text>
+    <path d="M715,378 V408" class="w" marker-end="url(#arr)"/>
+
+    <!-- 루프 -->
+    <rect x="605" y="410" width="220" height="48" rx="4" class="proc"/>
+    <text x="715" y="430" class="t">OCR0 ← motor_speed</text>
+    <text x="715" y="448" class="s">인터럽트에서 바뀐 속도를 PWM에 반영</text>
+    <path d="M715,458 V476" class="w" marker-end="url(#arr)"/>
+
+    <rect x="605" y="478" width="220" height="40" rx="4" class="proc"/>
+    <text x="715" y="503" class="t">10 ms 대기</text>
+    <path d="M715,518 V545 H570 V394 H713" class="w" marker-end="url(#arr)"/>
+    <text x="545" y="464" class="l" text-anchor="middle">무한</text><text x="545" y="480" class="l" text-anchor="middle">반복</text>
+
+    <!-- ISR -->
+    <text x="505" y="768" class="sec">인터럽트 (버튼 입력 시 실행)</text>
+    <rect x="505" y="778" width="210" height="56" rx="6" class="isr"/>
+    <text x="610" y="800" class="t">INT0 (PD0) 속도 증가</text>
+    <text x="610" y="820" class="s">동작 중일 때 +10 (최대 254)</text>
+    <rect x="725" y="778" width="210" height="56" rx="6" class="isr"/>
+    <text x="830" y="800" class="t">INT1 (PD1) 속도 감소</text>
+    <text x="830" y="820" class="s">동작 중일 때 −10 (최소 1)</text>
+    <rect x="505" y="842" width="430" height="56" rx="6" class="isr"/>
+    <text x="720" y="864" class="t">INT2 (PD2) 일시정지 / 재시작</text>
+    <text x="720" y="884" class="s">동작 중 → 현재 속도 저장 후 0 · 정지 중 → 저장한 속도 복원 (첫 시작 160)</text>
+    <text x="505" y="918" class="l" fill="#6b7280">※ 변경된 motor_speed는 메인 루프에서 10 ms마다 OCR0에 적용</text>
+  </g>
+</svg>
