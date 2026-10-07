@@ -25,6 +25,12 @@
 | 개발 환경 | CodeVisionAVR (C), KiCad 9, Fusion 360 |
 | 상태 | **완료** — 2025.08 – 2025.11 마이크로프로세서 수업 텀프로젝트 (이후 추가 개발 없음) |
 
+<p align="center">
+  <img src="docs/images/final_product.jpg" width="30%">
+  <img src="docs/images/pov_sphere.jpg" width="38%">
+  <br><sub>왼쪽 완성품 · 오른쪽 회전 중 잔상 — LED 한 줄이 회전하며 구(球) 형태의 면을 만듦</sub>
+</p>
+
 ---
 
 ## 시스템 구조
@@ -93,7 +99,9 @@ atmega128-pov-display/
 │  ├─ support_lower.stl       지지대 (아래)
 │  ├─ base.stl                받침대
 │  └─ base_support.stl        받침대 하부 받침
-└─ docs/images/               블록 다이어그램, 플로우차트
+└─ docs/
+   ├─ images/                 블록 다이어그램, 플로우차트, PCB · 3D · 결과 사진
+   └─ videos/                 동작 영상
 ```
 
 ---
@@ -111,11 +119,43 @@ atmega128-pov-display/
   - 고정용 마운팅 홀 4개
 - 48채널 LED 배선을 회전체에 싣기 위해 MCU와 시프트 레지스터를 한 장의 보드로 통합
 
+| PCB 레이아웃 | PCB 3D 뷰 | 회전판 조립 (LED 48채널 배선) |
+|:---:|:---:|:---:|
+| <img src="docs/images/pcb_layout.jpg" width="270"> | <img src="docs/images/pcb_3d.jpg" width="270"> | <img src="docs/images/soldered_rotor.jpg" width="270"> |
+
+브레드보드 테스트를 거친 뒤 PCB로 제작했습니다 ([브레드보드 사진](docs/images/breadboard.jpg)).
+
 ### 기구부
 
 - 회전판에 PCB와 LED를 고정하고, 모터 축에 연결해 회전
 - 지지대(위/아래)와 받침대로 모터와 회전부를 고정
 - 회전부 전원은 슬립링을 통해 공급 (회전하는 LED 보드에 VCC · GND 전달)
+
+| 회전판 · 덮개 | 지지대 · 받침대 | 최종 조립 모델 |
+|:---:|:---:|:---:|
+| <img src="docs/images/3d_rotor.jpg" width="290"> | <img src="docs/images/3d_base.jpg" width="290"> | <img src="docs/images/3d_assembly.jpg" width="190"> |
+
+---
+
+## 결과
+
+### RGB 출력
+
+| Red | Green | Blue |
+|:---:|:---:|:---:|
+| <img src="docs/images/rgb_red.jpg" width="260"> | <img src="docs/images/rgb_green.jpg" width="260"> | <img src="docs/images/rgb_blue.jpg" width="260"> |
+
+### 잔상으로 글자 출력 (`ISA`)
+
+| I | S | A |
+|:---:|:---:|:---:|
+| <img src="docs/images/pov_I.jpg" width="260"> | <img src="docs/images/pov_S.jpg" width="260"> | <img src="docs/images/pov_A.jpg" width="260"> |
+
+### 동작 영상
+
+<a href="docs/videos/pattern_demo.mp4"><img src="docs/images/pattern_demo_thumb.jpg" width="480" alt="패턴 출력 동작 영상"></a>
+
+▶ [`docs/videos/pattern_demo.mp4`](docs/videos/pattern_demo.mp4) — 회전하며 패턴을 출력하는 모습
 
 ---
 
